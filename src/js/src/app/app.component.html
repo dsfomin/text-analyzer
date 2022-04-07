@@ -1,0 +1,23 @@
+<div>
+  <p><input type="text" [ngModel]="text" (ngModelChange)="onTextChange($event)"></p>
+  <p>
+    <mat-button-toggle-group [(ngModel)]="mode" name="analyzeMode" aria-label="Analyze Mode">
+      <mat-button-toggle value="vowels">Vowels</mat-button-toggle>
+      <mat-button-toggle value="consonants">Consonants</mat-button-toggle>
+    </mat-button-toggle-group>
+  </p>
+  <p>
+    <mat-button-toggle-group [(ngModel)]="connection" name="analyzeConnection" aria-label="Analyze Connection">
+      <mat-button-toggle value="online">Online</mat-button-toggle>
+      <mat-button-toggle value="offline">Offline</mat-button-toggle>
+    </mat-button-toggle-group>
+  </p>
+  <p>
+    <button (click)="getMap()">Find solution!</button>
+  </p>
+  <ul>
+    <li *ngFor="let record of analyze | keyvalue">
+      Letter '{{record.key}}' appears {{record.value}} times
+    </li>
+  </ul>
+</div>
