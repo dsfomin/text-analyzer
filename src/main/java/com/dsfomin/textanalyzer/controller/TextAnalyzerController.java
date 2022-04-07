@@ -3,10 +3,12 @@ package com.dsfomin.textanalyzer.controller;
 import com.dsfomin.textanalyzer.model.TextAnalyze;
 import com.dsfomin.textanalyzer.service.TextAnalyzerService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -18,9 +20,7 @@ public class TextAnalyzerController {
     private final TextAnalyzerService textAnalyzerService;
 
     @PostMapping
-    public ResponseEntity<Map<Character, Long>> analyzeText(@RequestBody TextAnalyze textAnalyze) {
-        Map<Character, Long> mapOfVowelsOrConsonants = textAnalyzerService
-                .findMapOfVowelsOrConsonants(textAnalyze.getMode(), textAnalyze.getText());
-        return ResponseEntity.ok(mapOfVowelsOrConsonants);
+    public ResponseEntity<Map<Character, Long>> analyzeText(@Valid @RequestBody TextAnalyze textAnalyze) {
+        return ResponseEntity.ok(textAnalyzerService.findMapOfVowelsOrConsonants(textAnalyze));
     }
 }
