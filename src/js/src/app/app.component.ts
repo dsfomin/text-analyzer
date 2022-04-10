@@ -27,7 +27,7 @@ export class AppComponent {
     this.textToAnalyze.mode = this.mode;
     this.textToAnalyze.text = this.text;
 
-    if (this.connection === 'offline') {
+    if (this.connection === 'online') {
       this.textAnalyzeService.getMapOfVowelsOrConsonantsOnline(this.textToAnalyze).subscribe(
         (response: Map<string, number>) => {
           this.analyze = response;
@@ -36,7 +36,7 @@ export class AppComponent {
           alert(error.message);
         }
       );
-    } else if (this.connection === 'online') {
+    } else if (this.connection === 'offline') {
       this.analyze = this.textAnalyzeService.getMapOfVowelsOrConsonantsOffline(this.textToAnalyze);
     } else {
       console.log('Not found connection: ' + this.connection);

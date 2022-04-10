@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TextAnalyzeTest {
 
     @Test
-    void getMode() {
+    void textAnalyzeGettersAndSetters() {
         TextAnalyze textAnalyze = new TextAnalyze("vowels", "aaa");
         textAnalyze.setText("bbb");
         textAnalyze.setMode("consonants");

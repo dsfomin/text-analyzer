@@ -1,23 +1,38 @@
-<div>
-  <p><input type="text" [ngModel]="text" (ngModelChange)="onTextChange($event)"></p>
-  <p>
-    <mat-button-toggle-group [(ngModel)]="mode" name="analyzeMode" aria-label="Analyze Mode">
-      <mat-button-toggle value="vowels">Vowels</mat-button-toggle>
-      <mat-button-toggle value="consonants">Consonants</mat-button-toggle>
-    </mat-button-toggle-group>
-  </p>
-  <p>
-    <mat-button-toggle-group [(ngModel)]="connection" name="analyzeConnection" aria-label="Analyze Connection">
-      <mat-button-toggle value="online">Online</mat-button-toggle>
-      <mat-button-toggle value="offline">Offline</mat-button-toggle>
-    </mat-button-toggle-group>
-  </p>
-  <p>
-    <button (click)="getMap()">Find solution!</button>
-  </p>
-  <ul>
-    <li *ngFor="let record of analyze | keyvalue">
-      Letter '{{record.key}}' appears {{record.value}} times
-    </li>
-  </ul>
+<div class="wrapper">
+  <mat-toolbar class="toolbar">
+    <span class="toolbar-logo">Text Analyzer</span>
+    <span class="toolbar-spacer"></span>
+    <a href="https://github.com/dsfomin/text-analyzer">
+      <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Example heart icon">shares</mat-icon>
+    </a>
+  </mat-toolbar>
+
+  <div class="container">
+    <form class="form">
+      <mat-form-field class="form-input-field" appearance="fill">
+        <mat-label>Text Input</mat-label>
+        <input matInput [(ngModel)]="text" name="analyzerInput" (ngModelChange)="onTextChange($event)">
+      </mat-form-field>
+
+      <div class="toogle-buttons-group">
+        <mat-button-toggle-group [(ngModel)]="mode" name="analyzeMode" aria-label="Analyze Mode">
+          <mat-button-toggle value="vowels">Vowels</mat-button-toggle>
+          <mat-button-toggle value="consonants">Consonants</mat-button-toggle>
+        </mat-button-toggle-group>
+        <span class="toolbar-spacer"></span>
+        <mat-button-toggle-group [(ngModel)]="connection" name="analyzeConnection" aria-label="Analyze Connection">
+          <mat-button-toggle value="online">Online</mat-button-toggle>
+          <mat-button-toggle value="offline">Offline</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <button class="analyze-btn" mat-raised-button (click)="getMap()">Find solution!</button>
+
+      <ul>
+        <li *ngFor="let record of analyze | keyvalue">
+          Letter '{{record.key}}' appears {{record.value}} times
+        </li>
+      </ul>
+    </form>
+  </div>
 </div>
