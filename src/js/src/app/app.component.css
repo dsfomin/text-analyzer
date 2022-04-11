@@ -1,21 +1,15 @@
 
-/* Указываем box sizing */
-
 *,
 *::before,
 *::after {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-/* Убираем внутренние отступы */
 
 ul[class],
 ol[class] {
   padding: 0;
 }
-
-/* Убираем внешние отступы */
 
 body,
 h1,
@@ -34,41 +28,29 @@ dd {
   margin: 0;
 }
 
-/* Выставляем основные настройки по-умолчанию для body */
-
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
 }
 
-/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-
 ul[class],
 ol[class] {
   list-style: none;
 }
 
-/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
-
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
-
-/* Упрощаем работу с изображениями */
 
 img {
   max-width: 100%;
   display: block;
 }
 
-/* Указываем понятную периодичность в потоке данных у article*/
-
-article > * + * {
+article>*+* {
   margin-top: 1em;
 }
-
-/* Наследуем шрифты для инпутов и кнопок */
 
 input,
 button,
@@ -130,6 +112,15 @@ body {
   height: 100%;
 }
 
+
+@font-face {
+  font-family: "BeauRivage";
+  font-display: swap;
+  src: url("./fonts/BeauRivage-Regular.woff") format("woff");
+  font-weight: 400;
+}
+
+
 body {
   color: #000;
   background-color: #f2f2f2;
@@ -142,43 +133,173 @@ body._lock {
 
 
 .wrapper {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  position: relative;
 }
 
 
 .toolbar-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .toolbar-icon {
-    padding: 0 14px;
+  padding: 0 30px;
+}
+
+.toolbar-logo {
+  font-size: 33px;
+  font-family: "BeauRivage", sans-serif;
 }
 
 .form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+.form-input-field {
+  font-size: 15px;
 }
 
 .toogle-buttons-group {
-    margin-bottom: 2em;
-    display: flex;
+  display: flex;
 }
 
 .mat-button-toggle-group {
-    height: 38px;
-    align-items: center;
-  }
+  height: 38px;
+  align-items: center;
+}
+
+.analyze-btn {
+  line-height: 35px;
+  margin: 15px 0;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+  margin-bottom: 30px;
+}
+
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:19px;
+  font-weight: 100;
+  padding:17px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+td {
+  background:#FFFFFF;
+  padding:16px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+td.text-center {
+  text-align: center;
+}
