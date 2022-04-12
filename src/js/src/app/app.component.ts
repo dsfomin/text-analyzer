@@ -3,6 +3,7 @@ import { Component} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TextAnalyze } from './text-analyze';
 import { TextAnalyzeService } from './text-analyze.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,9 @@ export class AppComponent {
   public connection: string;
   public loading: boolean;
   public inputFormControl: FormControl;
-  
 
-  constructor(private textAnalyzeService: TextAnalyzeService) {
+
+  constructor(private textAnalyzeService: TextAnalyzeService, public dialog: MatDialog) {
     this.analyze = new Map();
     this.textToAnalyze = new TextAnalyze();
     this.text = '';
@@ -41,7 +42,8 @@ export class AppComponent {
           this.analyze = response;
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          const dialogRef = this.dialog.open(HttpClientConnectionErrorDialog, { disableClose: true });
+          dialogRef.afterClosed().subscribe(() => this.loading = false);
         }
       );
     } else if (this.connection === 'offline') {
@@ -56,3 +58,9 @@ export class AppComponent {
   }
 
 }
+
+@Component({
+  selector: 'http-client-connection-error-dialog',
+  templateUrl: './http-client-connection-error.component.html',
+})
+export class HttpClientConnectionErrorDialog {}
